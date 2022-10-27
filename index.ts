@@ -1,5 +1,6 @@
+export type { PromptRequest } from './graphql';
 import { ApolloClient, ApolloQueryResult, gql, InMemoryCache } from "@apollo/client";
-
+import { PromptRequest } from "./graphql";
 export class PromptZero {
     client: ApolloClient<any>;
     
@@ -12,7 +13,8 @@ export class PromptZero {
             uri
             });
     }
-    async getPrompts(): Promise<ApolloQueryResult<any>> {
+
+    async getPrompts(): Promise<ApolloQueryResult<{requestedPrompts: PromptRequest[]}>> {
         return await this.client
             .query({
                 query: gql`
@@ -20,6 +22,7 @@ export class PromptZero {
                     requestedPrompts(limit: 100, orderBy:{orderBy:CreatedAt, direction: Dsc}) {
                     status
                     createdAt
+                    prompt
                     result {
                         ... on Result_StableDiffusionV1_4 {
                         __typename

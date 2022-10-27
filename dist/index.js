@@ -20,6 +20,7 @@ class PromptZero {
                     requestedPrompts(limit: 100, orderBy:{orderBy:CreatedAt, direction: Dsc}) {
                     status
                     createdAt
+                    prompt
                     result {
                         ... on Result_StableDiffusionV1_4 {
                         __typename

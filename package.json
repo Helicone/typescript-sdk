@@ -1,9 +1,11 @@
 {
   "name": "promptzero",
   "scripts": {
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "publish": "yarn build && npm publish --access public"
+
   },
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Wrapper around graphql client to support PromptZero.com",
   "main": "./dist/index.js",
   "repository": {
