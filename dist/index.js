@@ -41,6 +41,12 @@ class PromptZero {
             headers: {
                 authorization: apiKey,
             },
+            defaultOptions: {
+                watchQuery: {
+                    fetchPolicy: "no-cache",
+                    nextFetchPolicy: "no-cache",
+                },
+            },
             uri,
         });
     }
@@ -150,7 +156,6 @@ class PromptZero {
         }
       `,
             variables: { uuid: promptId },
-            fetchPolicy: "no-cache",
         });
         return res.data.requestedPrompt.status;
     }
