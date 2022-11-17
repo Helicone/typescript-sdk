@@ -9,9 +9,9 @@ yarn add promptzero
 Here is an example
 
 ```typescript
-import { PromptZero } from "promptzero";
+import { initPromptZero } from "promptzero";
 
-const promptZero = new PromptZero("<KEY>");
+const promptZero = await initPromptZero("ROJKSLA-NG4EIAA-RE4P2QA-HFXMG5Y");
 
 const newPrompt = await promptZero.requestNewPrompt("cheese");
 const promptId = newPrompt.data.requestNewPrompt.id;
@@ -20,7 +20,7 @@ if (error !== null) {
   console.error("error:", error);
 } else {
   if (data.result?.__typename === "Result_StableDiffusionV1_4") {
-    console.log(data.result.images);
+    console.log(data.result.images.map((i) => i.url));
   }
 }
 ```

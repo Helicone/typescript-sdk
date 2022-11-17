@@ -159,13 +159,12 @@ class PromptZero {
         });
         return res.data.requestedPrompt.status;
     }
-    async waitOnResult(promptId, timeout = 10000, delay = 100) {
+    async waitOnResult(promptId, timeout = 45000, delay = 100) {
         const promptResult = this.updateCache.statusChanges[promptId];
         if (promptResult !== undefined) {
             return promptResult;
         }
-        const status = await this.getPromptStatus(promptId);
-        if (status.toLowerCase() === "completed") {
+        if ((await this.getPromptStatus(promptId)).toLowerCase() === "completed") {
             return apolloToCacheResult(await this.getPromptResult(promptId));
         }
         while (timeout > 0) {
@@ -175,6 +174,9 @@ class PromptZero {
             }
             await new Promise((f) => setTimeout(f, delay));
             timeout -= delay;
+        }
+        if ((await this.getPromptStatus(promptId)).toLowerCase() === "completed") {
+            return apolloToCacheResult(await this.getPromptResult(promptId));
         }
         return { data: null, error: "timeout" };
     }
