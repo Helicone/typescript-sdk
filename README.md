@@ -11,7 +11,7 @@ Here is an example
 ```typescript
 import { initPromptZero } from "promptzero";
 
-const promptZero = await initPromptZero("ROJKSLA-NG4EIAA-RE4P2QA-HFXMG5Y");
+const promptZero = await initPromptZero("<API_KEY>");
 
 const newPrompt = await promptZero.requestNewPrompt("cheese");
 const promptId = newPrompt.data.requestNewPrompt.id;

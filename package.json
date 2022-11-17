@@ -4,7 +4,7 @@
     "build": "tsc -p .",
     "publish": "yarn build && npm publish --access public"
   },
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Wrapper around graphql client to support PromptZero.com",
   "main": "./dist/index.js",
   "repository": {
